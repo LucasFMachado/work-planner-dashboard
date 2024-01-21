@@ -3,14 +3,15 @@
 import { revalidatePath } from 'next/cache'
 
 import Task from '@/lib/models/task.model'
-import { TaskDto } from '@/lib/types/task.types'
+import {
+  ChangeTaskStatus,
+  CreateTaskParams,
+  FetchTasksReturn,
+  TaskDto,
+  UpdateTaskParams,
+} from '@/lib/types/task.types'
 
 import { connectToDB } from '../mongoose'
-
-interface FetchTasksReturn {
-  tasks: TaskDto[]
-  hasNextPage: boolean
-}
 
 export async function fetchTasks(
   pageNumber = 1,
@@ -58,21 +59,13 @@ export async function fetchTask(taskId: string): Promise<TaskDto> {
   }
 }
 
-interface ICreateTaskParams {
-  name: string
-  description: string
-  important: boolean
-  deadline?: Date | null
-  path: string
-}
-
 export async function createTask({
   name,
   description,
   important = false,
   deadline = null,
   path,
-}: ICreateTaskParams) {
+}: CreateTaskParams) {
   try {
     connectToDB()
 
@@ -93,21 +86,13 @@ export async function createTask({
   }
 }
 
-interface IUpdateTaskParams {
-  taskId: string
-  name: string
-  description: string
-  important: boolean
-  path: string
-}
-
 export async function updateTask({
   taskId,
   name,
   description,
   important = false,
   path,
-}: IUpdateTaskParams) {
+}: UpdateTaskParams) {
   try {
     connectToDB()
 
@@ -127,15 +112,10 @@ export async function updateTask({
   }
 }
 
-interface IChangeTaskStatus {
-  taskId: string
-  path: string
-}
-
 export async function completeTask({
   taskId,
   path,
-}: IChangeTaskStatus): Promise<void> {
+}: ChangeTaskStatus): Promise<void> {
   try {
     connectToDB()
 
@@ -157,7 +137,7 @@ export async function completeTask({
 export async function toggleImportantTask({
   taskId,
   path,
-}: IChangeTaskStatus): Promise<void> {
+}: ChangeTaskStatus): Promise<void> {
   try {
     connectToDB()
 

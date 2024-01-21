@@ -9,10 +9,7 @@ import { useForm } from 'react-hook-form'
 import ReactQuill from 'react-quill'
 import * as z from 'zod'
 
-import { createTask } from '@/lib/actions/task.actions'
-import { CreateTaskValidation } from '@/lib/validations/task.validations'
-
-import { Button } from '../../ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -20,9 +17,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../../ui/form'
-import { Input } from '../../ui/input'
-import { Switch } from '../../ui/switch'
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Switch } from '@/components/ui/switch'
+import { createTask } from '@/lib/actions/task.actions'
+import { CreateTaskValidation } from '@/lib/validations/task.validations'
 
 export function CreateTask() {
   const router = useRouter()

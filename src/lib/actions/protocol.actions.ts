@@ -3,15 +3,16 @@
 import { revalidatePath } from 'next/cache'
 
 import Protocol from '@/lib/models/protocol.model'
-import { ProtocolDto } from '@/lib/types/protocol.types'
+import {
+  ChangeProtocolStatus,
+  CreateProtocolParams,
+  FetchProtocolsReturn,
+  ProtocolDto,
+  UpdateProtocolParams,
+} from '@/lib/types/protocol.types'
 
 import City from '../models/city.model'
 import { connectToDB } from '../mongoose'
-
-interface FetchProtocolsReturn {
-  protocols: ProtocolDto[]
-  hasNextPage: boolean
-}
 
 export async function fetchProtocols(
   pageNumber = 1,
@@ -59,21 +60,13 @@ export async function fetchProtocol(protocolId: string): Promise<ProtocolDto> {
   }
 }
 
-interface ICreateProtocolParams {
-  requestor: string
-  address: string
-  cityId: string
-  description?: string
-  path: string
-}
-
 export async function createProtocol({
   requestor,
   address,
   cityId,
   description,
   path,
-}: ICreateProtocolParams) {
+}: CreateProtocolParams) {
   try {
     connectToDB()
 
@@ -105,16 +98,6 @@ export async function createProtocol({
   }
 }
 
-interface IUpdateProtocolParams {
-  protocolId: string
-  requestor: string
-  address: string
-  cityId: string
-  description: string
-  completed: boolean
-  path: string
-}
-
 export async function updateProtocol({
   protocolId,
   requestor,
@@ -123,7 +106,7 @@ export async function updateProtocol({
   description,
   completed = false,
   path,
-}: IUpdateProtocolParams) {
+}: UpdateProtocolParams) {
   try {
     connectToDB()
 
@@ -145,15 +128,10 @@ export async function updateProtocol({
   }
 }
 
-interface IChangeProtocolStatus {
-  protocolId: string
-  path: string
-}
-
 export async function completeProtocol({
   protocolId,
   path,
-}: IChangeProtocolStatus): Promise<void> {
+}: ChangeProtocolStatus): Promise<void> {
   try {
     connectToDB()
 
@@ -175,7 +153,7 @@ export async function completeProtocol({
 export async function deletedProtocol({
   protocolId,
   path,
-}: IChangeProtocolStatus): Promise<void> {
+}: ChangeProtocolStatus): Promise<void> {
   try {
     connectToDB()
 
@@ -197,7 +175,7 @@ export async function deletedProtocol({
 export async function toggleImportantProtocol({
   protocolId,
   path,
-}: IChangeProtocolStatus): Promise<void> {
+}: ChangeProtocolStatus): Promise<void> {
   try {
     connectToDB()
 

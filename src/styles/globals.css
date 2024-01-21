@@ -23,6 +23,18 @@
     @apply font-light rounded-md border border-slate-700 bg-slate-900 text-slate-200 no-focus !important;
   }
 
+  .input-select {
+    @apply font-light rounded-md border border-slate-700 bg-transparent no-focus !important;
+  }
+
+  .input-select-content {
+    @apply font-light rounded-md border border-slate-700 bg-slate-900 !important;
+  }
+
+  .input-select-item {
+    @apply cursor-pointer hover:bg-slate-950 transition-all !important;
+  }
+
   .input-switch {
     @apply bg-slate-900 border border-slate-700 !important;
   }
@@ -51,7 +63,30 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #7878a3;
   }
-  
+}
+
+.toast-message {
+  border: 1px solid #334155 !important;
+  border-radius: 0.375rem !important;
+  padding: 0.75rem !important;
+  width: 15rem !important;
+  right: 0;
+  gap: 0;
+}
+
+.toast-success {
+  background-color: #10b981 !important;
+  color: #020617 !important;
+}
+
+.toast-error {
+  background-color: #ef4444 !important;
+  color: #e2e8f0 !important;
+}
+
+.toast-info {
+  background-color: #8b5cf6 !important;
+  color: #e2e8f0 !important;
 }
 
 /* Rich text component */

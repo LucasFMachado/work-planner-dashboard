@@ -19,12 +19,26 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { useToast } from '@/hooks/useToast'
 import { createProtocol } from '@/lib/actions/protocol.actions'
+import { CitiesListOption } from '@/lib/types/city.types'
 import { CreateProtocolValidation } from '@/lib/validations/protocol.validations'
 
-export function CreateProtocol() {
+interface CreateProtocolProps {
+  cities: CitiesListOption[]
+}
+
+export function CreateProtocol({ cities }: CreateProtocolProps) {
   const router = useRouter()
   const pathname = usePathname()
+  const { showToast } = useToast()
 
   const form = useForm({
     resolver: zodResolver(CreateProtocolValidation),
@@ -44,7 +58,7 @@ export function CreateProtocol() {
       cityId: values.cityId,
       path: pathname,
     })
-
+    showToast({ type: 'success', message: 'Protocol created' })
     router.push('/dashboard/protocols')
   }
 
@@ -88,6 +102,35 @@ export function CreateProtocol() {
               <FormControl>
                 <Input type="text" className="input-text" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="cityId"
+          render={({ field }) => (
+            <FormItem className="input-item">
+              <FormLabel className="input-label">Email</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="input-select">
+                    <SelectValue />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent className="input-select-content">
+                  {cities?.map(city => (
+                    <SelectItem
+                      key={city.value}
+                      value={city.value}
+                      className="input-select-item"
+                    >
+                      {city.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}

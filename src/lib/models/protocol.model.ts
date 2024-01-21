@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const protocolSchema = new mongoose.Schema({
-  number: { type: Number, require: true, unique: true },
+  number: { type: Number, require: true },
   requestor: { type: String, require: true },
   description: { type: String },
   address: { type: String, require: true },
