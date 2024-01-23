@@ -1,6 +1,6 @@
 import { CityEntity } from './city.types'
 
-export type ProtocolDto = {
+export type ProtocolEntity = {
   _id: string
   number: number
   requestor: string
@@ -15,7 +15,7 @@ export type ProtocolDto = {
 }
 
 export type FetchProtocolsReturn = {
-  protocols: ProtocolDto[]
+  protocols: ProtocolEntity[]
   hasNextPage: boolean
 }
 
