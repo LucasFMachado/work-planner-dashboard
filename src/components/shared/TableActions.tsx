@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { FaPen, FaTrashAlt } from 'react-icons/fa'
 
 import { Button } from '@/components/ui/button'
 import { deletedProtocol } from '@/lib/actions/protocol.actions'
-
 interface TableActionsProps {
   protocolId: string
 }
@@ -18,20 +18,17 @@ export function TableActions({ protocolId }: TableActionsProps) {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row w-full gap-2">
-      <Link
-        href={`/dashboard/protocols/${protocolId}`}
-        className="flex items-center w-full"
-      >
-        <Button className="flex items-center w-full bg-violet-700 hover:bg-violet-600 text-slate-200 transition-all h-6 px-1 text-[10px] uppercase">
-          Update
+    <div className="flex flex-col items-center sm:flex-row gap-1">
+      <Link href={`/dashboard/protocols/${protocolId}`}>
+        <Button className="text-indigo-400 hover:text-indigo-500 transition-all text-base h-full w-fit p-2">
+          <FaPen />
         </Button>
       </Link>
       <Button
         onClick={() => handleDelete(protocolId)}
-        className="flex items-center w-full bg-red-600 hover:bg-red-500 text-slate-200 transition-all h-6 px-1 text-[10px] uppercase"
+        className="text-red-400 hover:text-red-500 transition-all text-base h-full w-fit p-2"
       >
-        Delete
+        <FaTrashAlt />
       </Button>
     </div>
   )

@@ -1,13 +1,17 @@
+import { CityEntity } from './city.types'
+
 export type ProtocolDto = {
   _id: string
   number: number
   requestor: string
   description?: string
   address: string
-  cityId: string
+  city: CityEntity
   createdAt: Date
   completed: boolean
   completedAt?: Date
+  deleted: boolean
+  deletedAt?: Date
 }
 
 export type FetchProtocolsReturn = {

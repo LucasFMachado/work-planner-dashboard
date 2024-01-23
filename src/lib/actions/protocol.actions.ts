@@ -7,7 +7,7 @@ import {
   ChangeProtocolStatus,
   CreateProtocolParams,
   FetchProtocolsReturn,
-  ProtocolDto,
+  ProtocolEntity,
   UpdateProtocolParams,
 } from '@/lib/types/protocol.types'
 
@@ -23,14 +23,16 @@ export async function fetchProtocols(
 
     const skipAmount = (pageNumber - 1) * pageSize
 
-    const protocolsQuery = Protocol.find({ deleted: false })
+    const protocols: ProtocolEntity[] = await Protocol.find({ deleted: false })
       .sort({ createdAt: 'asc' })
       .skip(skipAmount)
       .limit(pageSize)
+      .populate({
+        path: 'city',
+        model: City,
+      })
 
-    const totalProtocols = await Protocol.countDocuments()
-
-    const protocols = await protocolsQuery.exec()
+    const totalProtocols = await Protocol.countDocuments({ deleted: false })
     const hasNextPage = totalProtocols > skipAmount + protocols.length
 
     return {
@@ -45,7 +47,9 @@ export async function fetchProtocols(
   }
 }
 
-export async function fetchProtocol(protocolId: string): Promise<ProtocolDto> {
+export async function fetchProtocol(
+  protocolId: string,
+): Promise<ProtocolEntity> {
   try {
     connectToDB()
 
@@ -84,7 +88,7 @@ export async function createProtocol({
       number: city.protocol,
       requestor,
       address,
-      cityId,
+      city: cityId,
       description,
     })
 
@@ -110,10 +114,20 @@ export async function updateProtocol({
   try {
     connectToDB()
 
+    const city = await City.findOneAndUpdate(
+      { _id: cityId },
+      { $inc: { protocol: 1 } },
+      { new: true },
+    )
+
+    if (!city) {
+      throw new Error('City not found.')
+    }
+
     await Protocol.findByIdAndUpdate(protocolId, {
       requestor,
       address,
-      cityId,
+      city: cityId,
       description,
       completed,
     })

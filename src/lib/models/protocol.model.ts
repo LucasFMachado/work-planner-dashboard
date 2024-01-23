@@ -5,7 +5,7 @@ const protocolSchema = new mongoose.Schema({
   requestor: { type: String, require: true },
   description: { type: String },
   address: { type: String, require: true },
-  cityId: { type: mongoose.Types.ObjectId, ref: 'City', required: true },
+  city: { type: mongoose.Types.ObjectId, ref: 'City', required: true },
   createdAt: { type: Date, default: Date.now },
   completed: { type: Boolean, default: false },
   completedAt: { type: Date, default: null },

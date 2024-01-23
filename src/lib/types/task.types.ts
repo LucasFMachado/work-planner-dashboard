@@ -1,4 +1,4 @@
-export type TaskDto = {
+export type TaskEntity = {
   _id: string
   name: string
   description?: string
@@ -10,7 +10,7 @@ export type TaskDto = {
 }
 
 export type FetchTasksReturn = {
-  tasks: TaskDto[]
+  tasks: TaskEntity[]
   hasNextPage: boolean
 }
 

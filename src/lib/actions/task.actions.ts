@@ -7,7 +7,7 @@ import {
   ChangeTaskStatus,
   CreateTaskParams,
   FetchTasksReturn,
-  TaskDto,
+  TaskEntity,
   UpdateTaskParams,
 } from '@/lib/types/task.types'
 
@@ -44,7 +44,7 @@ export async function fetchTasks(
   }
 }
 
-export async function fetchTask(taskId: string): Promise<TaskDto> {
+export async function fetchTask(taskId: string): Promise<TaskEntity> {
   try {
     connectToDB()
 

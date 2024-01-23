@@ -64,7 +64,7 @@ export function CreateCity() {
           </Link>
           <Button
             type="submit"
-            className="w-full bg-slate-200 hover:bg-slate-300 text-black transition-all"
+            className="w-full bg-slate-200 hover:bg-slate-300 text-slate-950 transition-all"
           >
             Create
           </Button>

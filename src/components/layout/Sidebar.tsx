@@ -7,7 +7,7 @@ import { SidebarLink } from './SidebarLink'
 
 export function Sidebar() {
   return (
-    <div className="sticky top-10">
+    <div className="sticky top-10 h-screen p-5 overflow-x-auto">
       <div className="flex items-center gap-5 mb-5">
         <Image
           src="/images/astronaut.png"

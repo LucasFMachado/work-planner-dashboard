@@ -19,19 +19,30 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
+import { useToast } from '@/hooks/useToast'
 import { updateProtocol } from '@/lib/actions/protocol.actions'
-import { ProtocolDto } from '@/lib/types/protocol.types'
+import { CitiesListOption } from '@/lib/types/city.types'
+import { ProtocolEntity } from '@/lib/types/protocol.types'
 import { formatProotcol } from '@/lib/utils'
 import { UpdateProtocolValidation } from '@/lib/validations/protocol.validations'
 
 interface UpdateProtocolProps {
-  protocol: ProtocolDto
+  protocol: ProtocolEntity
+  cities: CitiesListOption[]
 }
 
-export function UpdateProtocol({ protocol }: UpdateProtocolProps) {
+export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
   const router = useRouter()
   const pathname = usePathname()
+  const { showToast } = useToast()
 
   const form = useForm({
     resolver: zodResolver(UpdateProtocolValidation),
@@ -40,7 +51,7 @@ export function UpdateProtocol({ protocol }: UpdateProtocolProps) {
       requestor: protocol.requestor,
       description: protocol.description || '',
       address: protocol.address,
-      cityId: protocol.cityId,
+      cityId: String(protocol.city),
       completed: false,
     },
   })
@@ -55,7 +66,7 @@ export function UpdateProtocol({ protocol }: UpdateProtocolProps) {
       completed: values.completed,
       path: pathname,
     })
-
+    showToast({ type: 'success', message: 'Protocol updated' })
     router.push('/dashboard/protocols')
   }
 
@@ -109,10 +120,25 @@ export function UpdateProtocol({ protocol }: UpdateProtocolProps) {
           name="cityId"
           render={({ field }) => (
             <FormItem className="input-item">
-              <FormLabel className="input-label">City ID</FormLabel>
-              <FormControl>
-                <Input type="number" className="input-text" {...field} />
-              </FormControl>
+              <FormLabel className="input-label">Email</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="input-select">
+                    <SelectValue />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent className="input-select-content">
+                  {cities?.map(city => (
+                    <SelectItem
+                      key={city.value}
+                      value={city.value}
+                      className="input-select-item"
+                    >
+                      {city.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
@@ -164,7 +190,7 @@ export function UpdateProtocol({ protocol }: UpdateProtocolProps) {
           </Link>
           <Button
             type="submit"
-            className="w-full bg-slate-200 hover:bg-slate-300 text-black transition-all"
+            className="w-full bg-slate-200 hover:bg-slate-300 text-slate-950 transition-all"
           >
             Update
           </Button>

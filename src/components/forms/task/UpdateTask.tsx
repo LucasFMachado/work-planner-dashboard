@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill'
 import * as z from 'zod'
 
 import { updateTask } from '@/lib/actions/task.actions'
-import { TaskDto } from '@/lib/types/task.types'
+import { TaskEntity } from '@/lib/types/task.types'
 import { UpdateTaskValidation } from '@/lib/validations/task.validations'
 
 import { Button } from '../../ui/button'
@@ -25,7 +25,7 @@ import { Input } from '../../ui/input'
 import { Switch } from '../../ui/switch'
 
 interface UpdateTaskProps {
-  task: TaskDto
+  task: TaskEntity
 }
 
 export function UpdateTask({ task }: UpdateTaskProps) {
@@ -108,7 +108,7 @@ export function UpdateTask({ task }: UpdateTaskProps) {
           )}
         />
 
-        <Button type="submit" className="bg-emerald-500 text-black">
+        <Button type="submit" className="bg-emerald-500 text-slate-950">
           Update task
         </Button>
       </form>

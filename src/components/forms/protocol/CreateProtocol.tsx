@@ -98,20 +98,6 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
           name="cityId"
           render={({ field }) => (
             <FormItem className="input-item">
-              <FormLabel className="input-label">City ID</FormLabel>
-              <FormControl>
-                <Input type="text" className="input-text" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="cityId"
-          render={({ field }) => (
-            <FormItem className="input-item">
               <FormLabel className="input-label">Email</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
@@ -163,7 +149,7 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
           </Link>
           <Button
             type="submit"
-            className="w-full bg-slate-200 hover:bg-slate-300 text-black transition-all"
+            className="w-full bg-slate-200 hover:bg-slate-300 text-slate-950 transition-all"
           >
             Create
           </Button>
