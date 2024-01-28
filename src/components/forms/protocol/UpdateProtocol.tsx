@@ -26,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Switch } from '@/components/ui/switch'
+// import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/hooks/useToast'
 import { updateProtocol } from '@/lib/actions/protocol.actions'
 import { CitiesListOption } from '@/lib/types/city.types'
@@ -73,19 +73,59 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="form-component">
-        <FormField
-          control={form.control}
-          name="number"
-          render={({ field }) => (
-            <FormItem className="input-item">
-              <FormLabel className="input-label">Protocol number</FormLabel>
-              <FormControl>
-                <Input type="text" disabled className="input-text" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-row gap-2">
+          <FormField
+            control={form.control}
+            name="number"
+            render={({ field }) => (
+              <FormItem className="input-item">
+                <FormLabel className="input-label">Protocol</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    disabled
+                    className="input-text"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="cityId"
+            render={({ field }) => (
+              <FormItem className="input-item">
+                <FormLabel className="input-label">City</FormLabel>
+                <Select
+                  disabled
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="input-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="input-select-content">
+                    {cities?.map(city => (
+                      <SelectItem
+                        key={city.value}
+                        value={city.value}
+                        className="input-select-item"
+                      >
+                        {city.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
@@ -117,35 +157,6 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
 
         <FormField
           control={form.control}
-          name="cityId"
-          render={({ field }) => (
-            <FormItem className="input-item">
-              <FormLabel className="input-label">Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger className="input-select">
-                    <SelectValue />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent className="input-select-content">
-                  {cities?.map(city => (
-                    <SelectItem
-                      key={city.value}
-                      value={city.value}
-                      className="input-select-item"
-                    >
-                      {city.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="description"
           render={({ field }) => (
             <FormItem>
@@ -163,7 +174,7 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
           )}
         />
 
-        <FormField
+        {/* <FormField
           control={form.control}
           name="completed"
           render={({ field }) => (
@@ -180,7 +191,7 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
           <Link href="/dashboard/protocols" className="w-full">

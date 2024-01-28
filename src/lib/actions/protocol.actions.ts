@@ -136,7 +136,7 @@ export async function updateProtocol({
   } catch (error) {
     console.error(error)
     if (error instanceof Error) {
-      throw new Error(`Failed to create thread: ${error.message}`)
+      throw new Error(`Failed to update protocol: ${error.message}`)
     }
     throw new Error(`Internal server error: ${error}`)
   }
@@ -180,7 +180,7 @@ export async function deletedProtocol({
   } catch (error) {
     console.error(error)
     if (error instanceof Error) {
-      throw new Error(`Failed to complete protocol: ${error.message}`)
+      throw new Error(`Failed to delete protocol: ${error.message}`)
     }
     throw new Error(`Internal server error: ${error}`)
   }

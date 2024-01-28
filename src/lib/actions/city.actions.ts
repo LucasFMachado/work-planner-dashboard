@@ -40,7 +40,7 @@ export async function fetchCitiesList(): Promise<FetchCitiesListReturn> {
     return { cities: citiesReturn }
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(`Failed to fetch protocols: ${error.message}`)
+      throw new Error(`Failed to fetch cities: ${error.message}`)
     }
     throw new Error(`Internal server error: ${error}`)
   }

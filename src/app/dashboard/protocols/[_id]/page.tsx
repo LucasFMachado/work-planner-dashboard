@@ -8,7 +8,9 @@ interface UpdateTaskPageProps {
   }
 }
 
-export default async function UpdateTaskPage({ params }: UpdateTaskPageProps) {
+export default async function UpdateProductPage({
+  params,
+}: UpdateTaskPageProps) {
   const protocol = await fetchProtocol(params._id)
   const { cities } = await fetchCitiesList()
 

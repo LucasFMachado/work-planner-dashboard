@@ -1,7 +1,7 @@
 import { CreateProtocol } from '@/components/forms/protocol/CreateProtocol'
 import { fetchCitiesList } from '@/lib/actions/city.actions'
 
-export default async function CrateTaskPage() {
+export default async function CrateProductPage() {
   const { cities } = await fetchCitiesList()
 
   return (
