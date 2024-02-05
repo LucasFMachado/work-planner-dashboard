@@ -3,6 +3,7 @@ export type ProductUnitEntity = {
   name: string
   unit: string
   active: boolean
+  createdAt: Date
   deleted: boolean
   deletedAt?: Date
 }

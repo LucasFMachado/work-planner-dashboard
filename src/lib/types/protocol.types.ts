@@ -8,8 +8,6 @@ export type ProtocolEntity = {
   address: string
   city: CityEntity
   createdAt: Date
-  completed: boolean
-  completedAt?: Date
   deleted: boolean
   deletedAt?: Date
 }
@@ -33,7 +31,6 @@ export type UpdateProtocolParams = {
   address: string
   cityId: string
   description: string
-  completed: boolean
   path: string
 }
 

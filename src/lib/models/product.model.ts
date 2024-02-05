@@ -1,15 +1,18 @@
 import mongoose from 'mongoose'
 
-const productUnitSchema = new mongoose.Schema({
-  unit: { type: String, require: true, unique: true },
+const productSchema = new mongoose.Schema({
   name: { type: String, require: true },
+  productUnit: {
+    type: mongoose.Types.ObjectId,
+    ref: 'ProductUnit',
+    required: true,
+  },
   active: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
   deleted: { type: Boolean, default: false },
   deletedAt: { type: Date, default: null },
 })
 
-const ProductUnit =
-  mongoose.models.ProductUnit ||
-  mongoose.model('ProductUnit', productUnitSchema)
-export default ProductUnit
+const Product =
+  mongoose.models.Product || mongoose.model('Product', productSchema)
+export default Product

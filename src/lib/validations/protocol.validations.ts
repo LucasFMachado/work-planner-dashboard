@@ -12,5 +12,4 @@ export const UpdateProtocolValidation = z.object({
   description: z.string().max(500, 'Maximum 500 characters.'),
   address: z.string().min(1, 'Required field'),
   cityId: z.string().min(1, 'Required field'),
-  completed: z.boolean().default(false),
 })

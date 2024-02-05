@@ -2,6 +2,8 @@ export type CityEntity = {
   _id: string
   protocol: number
   name: string
+  active: boolean
+  createdAt: Date
   deleted: boolean
   deletedAt?: Date
 }

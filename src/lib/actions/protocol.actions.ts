@@ -11,12 +11,13 @@ import {
   UpdateProtocolParams,
 } from '@/lib/types/protocol.types'
 
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from '../constants'
 import City from '../models/city.model'
 import { connectToDB } from '../mongoose'
 
 export async function fetchProtocols(
-  pageNumber = 1,
-  pageSize = 15,
+  pageNumber = INITIAL_PAGE,
+  pageSize = INITIAL_PAGE_SIZE,
 ): Promise<FetchProtocolsReturn> {
   try {
     connectToDB()
@@ -108,7 +109,6 @@ export async function updateProtocol({
   address,
   cityId,
   description,
-  completed = false,
   path,
 }: UpdateProtocolParams) {
   try {
@@ -129,7 +129,6 @@ export async function updateProtocol({
       address,
       city: cityId,
       description,
-      completed,
     })
 
     revalidatePath(path)
@@ -137,28 +136,6 @@ export async function updateProtocol({
     console.error(error)
     if (error instanceof Error) {
       throw new Error(`Failed to update protocol: ${error.message}`)
-    }
-    throw new Error(`Internal server error: ${error}`)
-  }
-}
-
-export async function completeProtocol({
-  protocolId,
-  path,
-}: ChangeProtocolStatus): Promise<void> {
-  try {
-    connectToDB()
-
-    await Protocol.findByIdAndUpdate(protocolId, {
-      completed: true,
-      completedAt: new Date(),
-    })
-
-    revalidatePath(path)
-  } catch (error) {
-    console.error(error)
-    if (error instanceof Error) {
-      throw new Error(`Failed to complete protocol: ${error.message}`)
     }
     throw new Error(`Internal server error: ${error}`)
   }

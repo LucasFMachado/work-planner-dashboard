@@ -1,12 +1,9 @@
 'use client'
 
-import 'react-quill/dist/quill.snow.css'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import ReactQuill from 'react-quill'
 import * as z from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -27,39 +24,35 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/useToast'
-import { createProtocol } from '@/lib/actions/protocol.actions'
-import { CitiesListOption } from '@/lib/types/city.types'
-import { CreateProtocolValidation } from '@/lib/validations/protocol.validations'
+import { createProduct } from '@/lib/actions/product.actions'
+import { ProductUnitsListOption } from '@/lib/types/product-unit.types'
+import { CreateProductValidation } from '@/lib/validations/product.validations'
 
-interface CreateProtocolProps {
-  cities: CitiesListOption[]
+interface CreateProductProps {
+  productUnits: ProductUnitsListOption[]
 }
 
-export function CreateProtocol({ cities }: CreateProtocolProps) {
+export function CreateProduct({ productUnits }: CreateProductProps) {
   const router = useRouter()
   const pathname = usePathname()
   const { showToast } = useToast()
 
   const form = useForm({
-    resolver: zodResolver(CreateProtocolValidation),
+    resolver: zodResolver(CreateProductValidation),
     defaultValues: {
-      requestor: '',
-      description: '',
-      address: '',
-      cityId: '',
+      name: '',
+      productUnitId: '',
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof CreateProtocolValidation>) => {
-    await createProtocol({
-      requestor: values.requestor,
-      description: values.description,
-      address: values.address,
-      cityId: values.cityId,
+  const onSubmit = async (values: z.infer<typeof CreateProductValidation>) => {
+    await createProduct({
+      name: values.name,
+      productUnitId: values.productUnitId,
       path: pathname,
     })
-    showToast({ type: 'success', message: 'Protocol created' })
-    router.push('/dashboard/protocols')
+    showToast({ type: 'success', message: 'Product created' })
+    router.push('/dashboard/products')
   }
 
   return (
@@ -67,10 +60,10 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="form-component">
         <FormField
           control={form.control}
-          name="requestor"
+          name="name"
           render={({ field }) => (
             <FormItem className="input-item">
-              <FormLabel className="input-label">Requestor</FormLabel>
+              <FormLabel className="input-label">Name</FormLabel>
               <FormControl>
                 <Input type="text" className="input-text" {...field} />
               </FormControl>
@@ -81,24 +74,10 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
 
         <FormField
           control={form.control}
-          name="address"
+          name="productUnitId"
           render={({ field }) => (
             <FormItem className="input-item">
-              <FormLabel className="input-label">Address</FormLabel>
-              <FormControl>
-                <Input type="text" className="input-text" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="cityId"
-          render={({ field }) => (
-            <FormItem className="input-item">
-              <FormLabel className="input-label">City</FormLabel>
+              <FormLabel className="input-label">Product Unit</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="input-select">
@@ -106,13 +85,13 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent className="input-select-content">
-                  {cities?.map(city => (
+                  {productUnits?.map(productUnit => (
                     <SelectItem
-                      key={city.value}
-                      value={city.value}
+                      key={productUnit.value}
+                      value={productUnit.value}
                       className="input-select-item"
                     >
-                      {city.label}
+                      {productUnit.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -122,27 +101,8 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="input-label">Description</FormLabel>
-              <FormControl>
-                <ReactQuill
-                  className="input-text"
-                  value={field.value}
-                  onChange={field.onChange}
-                  placeholder="Test"
-                  theme="snow"
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href="/dashboard/protocols" className="w-full">
+          <Link href="/dashboard/products" className="w-full">
             <Button className="w-full bg-slate-950 hover:bg-slate-900 border border-slate-700 text-slate-200 transition-all">
               Cancel
             </Button>

@@ -1,4 +1,5 @@
-import { FaChartBar, FaMapMarkerAlt, FaTasks, FaWrench } from 'react-icons/fa'
+import { FaChartBar, FaMapMarkerAlt, FaWrench } from 'react-icons/fa'
+import { LuRuler } from 'react-icons/lu'
 import {
   MdAnalytics,
   MdHelpCenter,
@@ -19,9 +20,9 @@ export const sidebarCategories: SidebarCategoryType[] = [
         icon: <FaChartBar />,
       },
       {
-        title: 'Tasks',
-        path: '/dashboard/tasks',
-        icon: <FaTasks />,
+        title: 'Unidades',
+        path: '/dashboard/product-units',
+        icon: <LuRuler />,
       },
       {
         title: 'Protocols',
@@ -71,3 +72,6 @@ export const sidebarCategories: SidebarCategoryType[] = [
     ],
   },
 ]
+
+export const INITIAL_PAGE = 1
+export const INITIAL_PAGE_SIZE = 2

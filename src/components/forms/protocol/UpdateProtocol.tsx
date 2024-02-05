@@ -26,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-// import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/hooks/useToast'
 import { updateProtocol } from '@/lib/actions/protocol.actions'
 import { CitiesListOption } from '@/lib/types/city.types'
@@ -52,7 +51,6 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
       description: protocol.description || '',
       address: protocol.address,
       cityId: String(protocol.city),
-      completed: false,
     },
   })
 
@@ -63,7 +61,6 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
       description: values.description,
       address: values.address,
       cityId: values.cityId,
-      completed: values.completed,
       path: pathname,
     })
     showToast({ type: 'success', message: 'Protocol updated' })
@@ -173,25 +170,6 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
             </FormItem>
           )}
         />
-
-        {/* <FormField
-          control={form.control}
-          name="completed"
-          render={({ field }) => (
-            <FormItem className="input-item">
-              <FormLabel className="input-label">Completed</FormLabel>
-              <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  aria-readonly
-                  className="input-switch"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        /> */}
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
           <Link href="/dashboard/protocols" className="w-full">
