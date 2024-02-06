@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from '../constants'
 import Product from '../models/product.model'
 import ProductUnit from '../models/producty-unit.model'
 import { connectToDB } from '../mongoose'
@@ -14,8 +15,8 @@ import {
 } from '../types/product.types'
 
 export async function fetchProducts(
-  pageNumber = 1,
-  pageSize = 15,
+  pageNumber = INITIAL_PAGE,
+  pageSize = INITIAL_PAGE_SIZE,
 ): Promise<FetchProductsReturn> {
   try {
     connectToDB()
@@ -36,7 +37,6 @@ export async function fetchProducts(
 
     return {
       products,
-      totalProducts,
       hasNextPage,
     }
   } catch (error) {
@@ -121,7 +121,7 @@ export async function updateProduct({
   }
 }
 
-export async function deletedProduct({
+export async function deleteProduct({
   productId,
   path,
 }: DeleteProductParams): Promise<void> {

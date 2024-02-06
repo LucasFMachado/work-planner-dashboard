@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { deletedProtocol, fetchProtocols } from '@/lib/actions/protocol.actions'
+import { deleteProtocol, fetchProtocols } from '@/lib/actions/protocol.actions'
 import { INITIAL_PAGE } from '@/lib/constants'
 import { formatProotcol } from '@/lib/utils'
 
@@ -27,7 +27,7 @@ export default async function ProtocolsPage({
 
   const handleDelete = async (id: string, path: string) => {
     'use server'
-    await deletedProtocol({ protocolId: id, path })
+    await deleteProtocol({ protocolId: id, path })
   }
 
   return (

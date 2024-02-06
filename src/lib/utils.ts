@@ -11,3 +11,17 @@ export function formatProotcol(protocolNumber: number): string {
   }
   return String(protocolNumber).padStart(6, '0')
 }
+
+interface Params {
+  [key: string]: string | string[]
+}
+
+export function handlePagePath(params: Params, path: string): string {
+  if (params._id) {
+    return `${path.split('/')[path.split('/').length - 2]} / Update`
+  }
+  if (path.split('/').pop() === 'create') {
+    return `${path.split('/')[path.split('/').length - 2]} / Create`
+  }
+  return `${path.split('/').pop()}`
+}

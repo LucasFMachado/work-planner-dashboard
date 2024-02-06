@@ -12,7 +12,6 @@ export type ProductEntity = {
 
 export type FetchProductsReturn = {
   products: ProductEntity[]
-  totalProducts: number
   hasNextPage: boolean
 }
 

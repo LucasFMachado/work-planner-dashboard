@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaPlusCircle } from 'react-icons/fa'
 
 import { TableActions } from '@/components/shared/TableActions'
+import { TablePagination } from '@/components/shared/TablePagination'
 import { Button } from '@/components/ui/button'
 import {
   Table,
@@ -11,12 +12,25 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { fetchProducts } from '@/lib/actions/product.actions'
-import { fetchProtocols } from '@/lib/actions/protocol.actions'
-import { formatProotcol } from '@/lib/utils'
+import { deleteProduct, fetchProducts } from '@/lib/actions/product.actions'
+import { INITIAL_PAGE } from '@/lib/constants'
 
-export default async function ProductsPage() {
-  const { products } = await fetchProducts(1, 30)
+interface ProductsPageProps {
+  searchParams: {
+    page: string
+  }
+}
+
+export default async function ProductsPage({
+  searchParams: { page },
+}: ProductsPageProps) {
+  const currentPage = Number(page) || INITIAL_PAGE
+  const { products, hasNextPage } = await fetchProducts(currentPage)
+
+  const handleDelete = async (id: string, path: string) => {
+    'use server'
+    await deleteProduct({ productId: id, path })
+  }
 
   return (
     <section className="main-section">
@@ -44,12 +58,21 @@ export default async function ProductsPage() {
                   {product.productUnit.name}
                 </TableCell>
                 <TableCell className="table-cell w-20">
-                  <TableActions protocolId={product._id} />
+                  <TableActions
+                    handleDelete={handleDelete}
+                    id={product._id}
+                    route="products"
+                  />
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+        <TablePagination
+          route="products"
+          currentPage={currentPage}
+          hasNextPage={hasNextPage}
+        />
       </div>
     </section>
   )

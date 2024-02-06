@@ -74,4 +74,4 @@ export const sidebarCategories: SidebarCategoryType[] = [
 ]
 
 export const INITIAL_PAGE = 1
-export const INITIAL_PAGE_SIZE = 2
+export const INITIAL_PAGE_SIZE = 10

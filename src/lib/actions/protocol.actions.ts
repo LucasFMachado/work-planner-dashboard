@@ -141,7 +141,7 @@ export async function updateProtocol({
   }
 }
 
-export async function deletedProtocol({
+export async function deleteProtocol({
   protocolId,
   path,
 }: ChangeProtocolStatus): Promise<void> {
