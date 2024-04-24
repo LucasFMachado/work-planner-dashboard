@@ -1,10 +1,14 @@
 import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
-import { Roboto_Slab } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 import { Toaster } from '@/components/ui/sonner'
-const robotoSlab = Roboto_Slab({ subsets: ['latin'] })
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+})
 
 export const metadata: Metadata = {
   title: 'Admin dashboard',
@@ -19,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${robotoSlab.className} text-sm bg-slate-950 text-slate-200`}
+        className={`${inter.className} text-sm bg-slate-950 text-slate-200`}
       >
         {children}
         <Toaster />
