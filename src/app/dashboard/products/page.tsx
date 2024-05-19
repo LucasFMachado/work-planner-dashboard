@@ -1,9 +1,6 @@
-import Link from 'next/link'
-import { FaPlusCircle } from 'react-icons/fa'
-
 import { TableActions } from '@/components/shared/TableActions'
+import { TableOperations } from '@/components/shared/TableOperations'
 import { TablePagination } from '@/components/shared/TablePagination'
-import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -35,19 +32,15 @@ export default async function ProductsPage({
   return (
     <section className="main-section">
       <div className="w-full mb-2">
-        <Link href="/dashboard/products/create">
-          <Button className="flex gap-2 items-center h-8 bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all">
-            <FaPlusCircle />
-            Create
-          </Button>
-        </Link>
+        <TableOperations route="products" />
       </div>
-      <div className="w-full rounded-md bg-slate-950 border border-slate-700 text-slate-200">
-        <Table>
+      <div className="w-full table">
+        <Table className="w-full max-w-full bg-transparent">
           <TableHeader>
             <TableRow className="table-row-head">
               <TableHead className="table-head">Name</TableHead>
               <TableHead className="table-head">Unit</TableHead>
+              <TableHead className="table-head"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

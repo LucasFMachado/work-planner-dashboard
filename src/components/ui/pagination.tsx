@@ -14,7 +14,7 @@ const Pagination = ({
     role="navigation"
     aria-label="pagination"
     className={cn(
-      'mx-auto flex w-full justify-end border-t border-slate-700 text-slate-200',
+      'mx-auto flex w-full justify-end border-t border-neutral-700 text-neutral-200',
       className,
     )}
     {...props}

@@ -14,45 +14,57 @@
   .input-item {
     @apply flex flex-col w-full !important;
   }
+
+  .form-create-button {
+    @apply w-full bg-emerald-500 hover:bg-emerald-600 text-neutral-50 transition-all border border-neutral-50 !important;
+  }
   
+  .form-update-button {
+    @apply w-full bg-blue-700 hover:bg-blue-600 text-neutral-50 transition-all !important;
+  }
+
+  .form-cancel-button {
+    @apply w-full bg-transparent hover:bg-neutral-200 border border-neutral-800 text-neutral-800 transition-all !important;
+  }
+
   .input-label {
-    @apply text-base font-semibold text-slate-200 w-fit !important;
+    @apply text-sm font-medium text-neutral-800 w-fit !important;
   }
   
   .input-text {
-    @apply font-light rounded-md border border-slate-700 bg-transparent text-slate-200 no-focus !important;
+    @apply rounded-md border border-neutral-500 bg-transparent text-neutral-800 no-focus !important;
   }
 
   .input-select {
-    @apply font-light rounded-md border border-slate-700 bg-transparent no-focus !important;
+    @apply rounded-md border border-neutral-500 bg-transparent no-focus !important;
   }
 
-  .input-select-content {
-    @apply font-light rounded-md border border-slate-700 bg-slate-900 !important;
+  .input-select-list {
+    @apply rounded-md border border-neutral-500 bg-neutral-100 !important;
   }
 
-  .input-select-item {
-    @apply cursor-pointer hover:bg-slate-950 transition-all !important;
+  .input-select-list-item {
+    @apply cursor-pointer hover:bg-blue-500 transition-all rounded-md !important;
   }
 
   .input-switch {
-    @apply bg-transparent border border-slate-700 !important;
+    @apply bg-transparent border border-neutral-500 !important;
   }
 
   .table-head {
-    @apply font-normal p-0 px-4 !important;
+    @apply py-2 px-2 font-medium !important;
   }
 
   .table-row-head {
-    @apply border-b border-slate-700 !important;
+    @apply bg-blue-500 text-neutral-50 !important;
   }
 
   .table-row-body {
-    @apply font-light border-b border-slate-700 first:border-t-2 last:border-none !important;
+    @apply border-b border-neutral-800 first:border-t-2 last:border-none !important;
   }
 
   .table-cell {
-    @apply p-0 px-4 !important;
+    @apply p-1 px-2 !important;
   }
 
   .main-section {

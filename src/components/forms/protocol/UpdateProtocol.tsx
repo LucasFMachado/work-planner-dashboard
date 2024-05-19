@@ -106,12 +106,12 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
                       <SelectValue />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="input-select-content">
+                  <SelectContent className="input-select-list">
                     {cities?.map(city => (
                       <SelectItem
                         key={city.value}
                         value={city.value}
-                        className="input-select-item"
+                        className="input-select-list-item"
                       >
                         {city.label}
                       </SelectItem>
@@ -173,14 +173,9 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
           <Link href="/dashboard/protocols" className="w-full">
-            <Button className="w-full bg-slate-950 hover:bg-slate-900 border border-slate-700 text-slate-200 transition-all">
-              Cancel
-            </Button>
+            <Button className="form-cancel-button">Cancel</Button>
           </Link>
-          <Button
-            type="submit"
-            className="w-full bg-slate-200 hover:bg-slate-300 text-slate-950 transition-all"
-          >
+          <Button type="submit" className="form-update-button">
             Update
           </Button>
         </div>

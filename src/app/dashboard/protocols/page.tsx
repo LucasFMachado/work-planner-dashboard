@@ -35,13 +35,14 @@ export default async function ProtocolsPage({
       <div className="w-full mb-2">
         <TableOperations route="protocols" />
       </div>
-      <div className="w-full rounded-md bg-slate-950 border border-slate-700 text-slate-200">
-        <Table>
+      <div className="w-full table">
+        <Table className="w-full max-w-full bg-transparent">
           <TableHeader>
             <TableRow className="table-row-head">
               <TableHead className="table-head w-28">Number</TableHead>
               <TableHead className="table-head">Requestor</TableHead>
               <TableHead className="table-head">City</TableHead>
+              <TableHead className="table-head"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

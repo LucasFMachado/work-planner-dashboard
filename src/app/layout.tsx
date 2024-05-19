@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} text-sm bg-slate-950 text-slate-200`}
+        className={`${inter.className} text-sm bg-neutral-100 text-neutral-800`}
       >
         {children}
         <Toaster />

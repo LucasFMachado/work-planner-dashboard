@@ -16,8 +16,8 @@ export function SidebarLink({ link }: SidebarLinkProps) {
   return (
     <Link
       href={link.path}
-      className={`flex items-center gap-2 p-4 my-1 rounded-md hover:bg-tertiary-background ${
-        isActivePath && 'bg-slate-700'
+      className={`flex items-center gap-2 p-4 my-1 rounded-md hover:bg-tertiary-background font-medium ${
+        isActivePath && 'bg-blue-500 text-neutral-50'
       }`}
     >
       {link.icon}
