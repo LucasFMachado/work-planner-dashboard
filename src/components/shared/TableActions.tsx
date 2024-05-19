@@ -18,13 +18,13 @@ export function TableActions({ id, route, handleDelete }: TableActionsProps) {
   return (
     <div className="flex flex-col items-center sm:flex-row gap-1">
       <Link href={`/dashboard/${route}/${id}`}>
-        <Button className="text-indigo-400 hover:text-indigo-500 transition-all text-base h-full w-fit p-2">
+        <Button className="text-blue-600 hover:text-neutral-50 transition-all text-base h-full w-fit p-2">
           <FaPen />
         </Button>
       </Link>
       <Button
         onClick={() => handleDelete(id, pathname)}
-        className="text-red-400 hover:text-red-500 transition-all text-base h-full w-fit p-2"
+        className="text-red-500 hover:text-neutral-50 transition-all text-base h-full w-fit p-2"
       >
         <FaTrashAlt />
       </Button>

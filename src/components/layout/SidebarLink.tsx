@@ -11,7 +11,9 @@ interface SidebarLinkProps {
 
 export function SidebarLink({ link }: SidebarLinkProps) {
   const path = usePathname()
-  const isActivePath = path === link.path
+  const isActivePath =
+    path === link.path ||
+    (path.includes(link.path) && link.path !== '/dashboard')
 
   return (
     <Link

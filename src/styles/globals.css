@@ -16,11 +16,11 @@
   }
 
   .form-create-button {
-    @apply w-full bg-emerald-500 hover:bg-emerald-600 text-neutral-50 transition-all border border-neutral-50 !important;
+    @apply w-full bg-emerald-500 hover:bg-emerald-600 text-neutral-50 transition-all border border-emerald-600 !important;
   }
   
   .form-update-button {
-    @apply w-full bg-blue-700 hover:bg-blue-600 text-neutral-50 transition-all !important;
+    @apply w-full bg-blue-700 hover:bg-blue-600 text-neutral-50 transition-all border-blue-600 !important;
   }
 
   .form-cancel-button {
@@ -51,16 +51,16 @@
     @apply bg-transparent border border-neutral-500 !important;
   }
 
-  .table-head {
-    @apply py-2 px-2 font-medium !important;
-  }
-
   .table-row-head {
-    @apply bg-blue-500 text-neutral-50 !important;
+    @apply bg-transparent text-neutral-800 !important;
+  }
+  
+  .table-head {
+    @apply py-2 px-2 font-semibold !important;
   }
 
   .table-row-body {
-    @apply border-b border-neutral-800 first:border-t-2 last:border-none !important;
+    @apply bg-transparent border-b border-neutral-200 first:border-t-2 hover:bg-blue-400 hover:text-neutral-50 transition-all !important;
   }
 
   .table-cell {

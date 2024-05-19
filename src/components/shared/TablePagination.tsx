@@ -22,7 +22,7 @@ export function TablePagination({
   hasNextPage,
 }: TablePaginationProps) {
   return (
-    <Pagination>
+    <Pagination className="border-t border-neutral-200">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
