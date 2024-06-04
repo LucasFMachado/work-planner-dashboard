@@ -15,7 +15,7 @@ export default async function UpdateProductPage({
   const { productUnits } = await fetchProductUnitsList()
 
   return (
-    <section className="min-h-full flex flex-col items-center gap-2 m-4">
+    <section className="form-section">
       <div className="rounded-md w-4/5">
         <UpdateProduct product={product} productUnits={productUnits} />
       </div>

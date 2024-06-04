@@ -11,7 +11,7 @@ export default function DashboardLayout({
       <div className="flex-1 max-w-60 bg-neutral-50 drop-shadow">
         <Sidebar />
       </div>
-      <div className="w-3/4 p-5">
+      <div className="w-3/4 p-5 h-vh flex flex-col gap-10">
         <Navbar />
         {children}
       </div>

@@ -68,7 +68,11 @@
   }
 
   .main-section {
-    @apply mx-auto flex flex-col items-center justify-start min-h-[550px] !important;
+    @apply mx-auto flex flex-col items-center justify-start min-h-[550px] w-full h-full !important;
+  }
+
+  .form-section {
+    @apply h-full flex flex-col items-center gap-2 !important;
   }
 }
 
