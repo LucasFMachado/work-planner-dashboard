@@ -1,14 +1,12 @@
 'use client'
 
-import 'react-quill/dist/quill.snow.css'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import ReactQuill from 'react-quill'
 import * as z from 'zod'
 
+import TextEditor from '@/components/shared/TextEditor'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -129,7 +127,7 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
             <FormItem>
               <FormLabel className="input-label">Description</FormLabel>
               <FormControl>
-                <ReactQuill
+                <TextEditor
                   className="input-text"
                   value={field.value}
                   onChange={field.onChange}
