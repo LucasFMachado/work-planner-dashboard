@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/useToast'
 import { updateProtocol } from '@/lib/actions/protocol.actions'
+import { Routes } from '@/lib/constants'
 import { CitiesListOption } from '@/lib/types/city.types'
 import { ProtocolEntity } from '@/lib/types/protocol.types'
 import { formatProotcol } from '@/lib/utils'
@@ -62,7 +63,7 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
       path: pathname,
     })
     showToast({ type: 'success', message: 'Protocol updated' })
-    router.push('/dashboard/protocols')
+    router.push(`/dashboard/${Routes.protocols}`)
   }
 
   return (
@@ -170,7 +171,7 @@ export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
         />
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href="/dashboard/protocols" className="w-full">
+          <Link href={`/dashboard/${Routes.protocols}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-update-button">

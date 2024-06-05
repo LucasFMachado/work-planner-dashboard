@@ -25,6 +25,7 @@ import {
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/useToast'
 import { createProduct } from '@/lib/actions/product.actions'
+import { Routes } from '@/lib/constants'
 import { ProductUnitsListOption } from '@/lib/types/product-unit.types'
 import { CreateProductValidation } from '@/lib/validations/product.validations'
 
@@ -52,7 +53,7 @@ export function CreateProduct({ productUnits }: CreateProductProps) {
       path: pathname,
     })
     showToast({ type: 'success', message: 'Product created' })
-    router.push('/dashboard/products')
+    router.push(`/dashboard/${Routes.products}`)
   }
 
   return (
@@ -102,7 +103,7 @@ export function CreateProduct({ productUnits }: CreateProductProps) {
         />
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href="/dashboard/products" className="w-full">
+          <Link href={`/dashboard/${Routes.products}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-create-button">

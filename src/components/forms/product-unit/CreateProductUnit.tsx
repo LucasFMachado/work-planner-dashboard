@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { createProductUnit } from '@/lib/actions/product-unit.actions'
+import { Routes } from '@/lib/constants'
 import { CreateProductUnitValidation } from '@/lib/validations/product-unit.validations'
 
 export function CreateProductUnit() {
@@ -40,7 +41,7 @@ export function CreateProductUnit() {
       path: pathname,
     })
 
-    router.push('/dashboard/cities')
+    router.push(`/dashboard/${Routes.protuctUnits}`)
   }
 
   return (
@@ -75,7 +76,7 @@ export function CreateProductUnit() {
         />
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href="/dashboard/protocols" className="w-full">
+          <Link href={`/dashboard/${Routes.protuctUnits}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-create-button">

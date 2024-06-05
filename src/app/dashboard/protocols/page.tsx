@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { deleteProtocol, fetchProtocols } from '@/lib/actions/protocol.actions'
-import { INITIAL_PAGE } from '@/lib/constants'
+import { INITIAL_PAGE, Routes } from '@/lib/constants'
 import { formatProotcol } from '@/lib/utils'
 
 interface ProtocolsPageProps {
@@ -33,7 +33,7 @@ export default async function ProtocolsPage({
   return (
     <section className="main-section">
       <div className="w-full mb-2">
-        <TableOperations route="protocols" />
+        <TableOperations route={Routes.protocols} />
       </div>
       <div className="w-full table">
         <Table className="w-full max-w-full bg-transparent">
@@ -60,7 +60,7 @@ export default async function ProtocolsPage({
                 <TableCell className="table-cell w-20">
                   <TableActions
                     handleDelete={handleDelete}
-                    route="protocols"
+                    route={Routes.protocols}
                     id={protocol._id}
                   />
                 </TableCell>
@@ -69,7 +69,7 @@ export default async function ProtocolsPage({
           </TableBody>
         </Table>
         <TablePagination
-          route="protocols"
+          route={Routes.protocols}
           currentPage={currentPage}
           hasNextPage={hasNextPage}
         />

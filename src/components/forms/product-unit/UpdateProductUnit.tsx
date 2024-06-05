@@ -16,47 +16,40 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { useToast } from '@/hooks/useToast'
-import { updateProduct } from '@/lib/actions/product.actions'
+import { updateProductUnit } from '@/lib/actions/product-unit.actions'
 import { Routes } from '@/lib/constants'
-import { ProductEntity } from '@/lib/types/product.types'
-import { ProductUnitsListOption } from '@/lib/types/product-unit.types'
-import { UpdateProductValidation } from '@/lib/validations/product.validations'
+import { ProductUnitEntity } from '@/lib/types/product-unit.types'
+import { UpdateProductUnitValidation } from '@/lib/validations/product-unit.validations'
 
-interface UpdateProductProps {
-  product: ProductEntity
-  productUnits: ProductUnitsListOption[]
+interface UpdateProductUnitProps {
+  productUnit: ProductUnitEntity
 }
 
-export function UpdateProduct({ product, productUnits }: UpdateProductProps) {
+export function UpdateProductUnit({ productUnit }: UpdateProductUnitProps) {
   const router = useRouter()
   const pathname = usePathname()
   const { showToast } = useToast()
 
   const form = useForm({
-    resolver: zodResolver(UpdateProductValidation),
+    resolver: zodResolver(UpdateProductUnitValidation),
     defaultValues: {
-      name: product.name,
-      productUnitId: String(product.productUnit),
+      name: productUnit.name,
+      unit: productUnit.unit,
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof UpdateProductValidation>) => {
-    await updateProduct({
-      productId: product._id,
+  const onSubmit = async (
+    values: z.infer<typeof UpdateProductUnitValidation>,
+  ) => {
+    await updateProductUnit({
+      productUnitId: productUnit._id,
       name: values.name,
-      productUnitId: values.productUnitId,
+      unit: values.unit,
       path: pathname,
     })
     showToast({ type: 'success', message: 'Product updated' })
-    router.push(`/dashboard/${Routes.products}`)
+    router.push(`/dashboard/${Routes.protuctUnits}`)
   }
 
   return (
@@ -78,35 +71,20 @@ export function UpdateProduct({ product, productUnits }: UpdateProductProps) {
 
         <FormField
           control={form.control}
-          name="productUnitId"
+          name="unit"
           render={({ field }) => (
             <FormItem className="input-item">
-              <FormLabel className="input-label">Product unit</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger className="input-select">
-                    <SelectValue />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent className="input-select-list">
-                  {productUnits?.map(productUnit => (
-                    <SelectItem
-                      key={productUnit.value}
-                      value={productUnit.value}
-                      className="input-select-list-item"
-                    >
-                      {productUnit.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <FormLabel className="input-label">Unit</FormLabel>
+              <FormControl>
+                <Input type="text" className="input-text" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href={`/dashboard/${Routes.products}`} className="w-full">
+          <Link href={`/dashboard/${Routes.protuctUnits}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-update-button">

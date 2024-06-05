@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { deleteProduct, fetchProducts } from '@/lib/actions/product.actions'
-import { INITIAL_PAGE } from '@/lib/constants'
+import { INITIAL_PAGE, Routes } from '@/lib/constants'
 
 interface ProductsPageProps {
   searchParams: {
@@ -32,7 +32,7 @@ export default async function ProductsPage({
   return (
     <section className="main-section">
       <div className="w-full mb-2">
-        <TableOperations route="products" />
+        <TableOperations route={Routes.products} />
       </div>
       <div className="w-full table">
         <Table className="w-full max-w-full bg-transparent">
@@ -54,7 +54,7 @@ export default async function ProductsPage({
                   <TableActions
                     handleDelete={handleDelete}
                     id={product._id}
-                    route="products"
+                    route={Routes.products}
                   />
                 </TableCell>
               </TableRow>
@@ -62,7 +62,7 @@ export default async function ProductsPage({
           </TableBody>
         </Table>
         <TablePagination
-          route="products"
+          route={Routes.products}
           currentPage={currentPage}
           hasNextPage={hasNextPage}
         />

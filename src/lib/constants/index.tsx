@@ -20,7 +20,7 @@ export const sidebarCategories: SidebarCategoryType[] = [
         icon: <FaChartBar />,
       },
       {
-        title: 'Unidades',
+        title: 'Product Units',
         path: '/dashboard/product-units',
         icon: <LuRuler />,
       },
@@ -80,3 +80,10 @@ export const sidebarCategories: SidebarCategoryType[] = [
 
 export const INITIAL_PAGE = 1
 export const INITIAL_PAGE_SIZE = 10
+
+export enum Routes {
+  protocols = 'protocols',
+  products = 'products',
+  protuctUnits = 'product-units',
+  cities = 'cities',
+}

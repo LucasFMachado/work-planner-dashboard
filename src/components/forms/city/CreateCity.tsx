@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { createCity } from '@/lib/actions/city.actions'
+import { Routes } from '@/lib/constants'
 import { CreateCityValidation } from '@/lib/validations/city.validations'
 
 export function CreateCity() {
@@ -36,7 +37,7 @@ export function CreateCity() {
       path: pathname,
     })
 
-    router.push('/dashboard/cities')
+    router.push(`/dashboard/${Routes.cities}`)
   }
 
   return (
@@ -57,7 +58,7 @@ export function CreateCity() {
         />
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href="/dashboard/protocols" className="w-full">
+          <Link href={`/dashboard/${Routes.cities}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-create-button">

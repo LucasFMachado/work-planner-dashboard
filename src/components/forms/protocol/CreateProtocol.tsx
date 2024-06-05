@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/useToast'
 import { createProtocol } from '@/lib/actions/protocol.actions'
+import { Routes } from '@/lib/constants'
 import { CitiesListOption } from '@/lib/types/city.types'
 import { CreateProtocolValidation } from '@/lib/validations/protocol.validations'
 
@@ -57,7 +58,7 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
       path: pathname,
     })
     showToast({ type: 'success', message: 'Protocol created' })
-    router.push('/dashboard/protocols')
+    router.push(`/dashboard/${Routes.protocols}`)
   }
 
   return (
@@ -140,7 +141,7 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
         />
 
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href="/dashboard/protocols" className="w-full">
+          <Link href={`/dashboard/${Routes.protocols}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-create-button">
