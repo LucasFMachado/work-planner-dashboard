@@ -22,25 +22,23 @@ export function TablePagination({
   hasNextPage,
 }: TablePaginationProps) {
   return (
-    <Pagination className="border-t border-neutral-200">
+    <Pagination className="table-footer">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
             href={`/dashboard/${route}?page=${currentPage - 1}`}
             disabled={currentPage <= INITIAL_PAGE}
-            className="hover:bg-neutral-50 text-neutral-800"
+            className="hover:bg-background-secondary hover:text-white transition-all rounded-md"
           />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink className="w-4 h-4  text-neutral-800">
-            {currentPage}
-          </PaginationLink>
+          <PaginationLink className="w-10 h-10">{currentPage}</PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationNext
             href={`/dashboard/${route}?page=${currentPage + 1}`}
             disabled={!hasNextPage}
-            className="hover:bg-neutral-50 rounded-md transition-all text-neutral-800"
+            className="hover:bg-background-secondary hover:text-white transition-all rounded-md"
           />
         </PaginationItem>
       </PaginationContent>

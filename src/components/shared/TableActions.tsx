@@ -16,15 +16,15 @@ export function TableActions({ id, route, handleDelete }: TableActionsProps) {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col items-center sm:flex-row gap-1">
+    <div className="flex space-x-2">
       <Link href={`/dashboard/${route}/${id}`}>
-        <Button className="text-blue-600 hover:text-neutral-50 transition-all text-base h-full w-fit p-2">
+        <Button className="bg-orange-400 hover:bg-orange-500 text-white py-1 px-3 rounded-md">
           <FaPen />
         </Button>
       </Link>
       <Button
         onClick={() => handleDelete(id, pathname)}
-        className="text-red-500 hover:text-neutral-50 transition-all text-base h-full w-fit p-2"
+        className="bg-red hover:bg-red-hover text-white py-1 px-3  rounded-md"
       >
         <FaTrashAlt />
       </Button>

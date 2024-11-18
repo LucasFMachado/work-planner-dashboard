@@ -65,6 +65,7 @@ export async function fetchProduct(productId: string): Promise<ProductEntity> {
 export async function createProduct({
   name,
   productUnitId,
+  image,
   path,
 }: CreateProductParams) {
   try {
@@ -79,6 +80,7 @@ export async function createProduct({
     await Product.create({
       name,
       productUnit: productUnitId,
+      image,
     })
 
     revalidatePath(path)
@@ -94,6 +96,7 @@ export async function createProduct({
 export async function updateProduct({
   productId,
   name,
+  image,
   productUnitId,
   path,
 }: UpdateProductParams) {
@@ -108,6 +111,7 @@ export async function updateProduct({
 
     await Product.findByIdAndUpdate(productId, {
       name,
+      image,
       productUnit: productUnitId,
     })
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -23,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useFileHandler } from '@/hooks/useFileHandler'
 import { useToast } from '@/hooks/useToast'
 import { updateProduct } from '@/lib/actions/product.actions'
 import { Routes } from '@/lib/constants'
@@ -39,19 +41,29 @@ export function UpdateProduct({ product, productUnits }: UpdateProductProps) {
   const router = useRouter()
   const pathname = usePathname()
   const { showToast } = useToast()
+  const { handleFile, uploadFile, file } = useFileHandler()
 
   const form = useForm({
     resolver: zodResolver(UpdateProductValidation),
     defaultValues: {
       name: product.name,
+      image: product.image,
       productUnitId: String(product.productUnit),
     },
   })
 
   const onSubmit = async (values: z.infer<typeof UpdateProductValidation>) => {
+    if (file && product.image !== values.image) {
+      const uploadedFile = await uploadFile(file)
+      values.image = uploadedFile || ''
+    } else {
+      values.image = ''
+    }
+
     await updateProduct({
       productId: product._id,
       name: values.name,
+      image: values.image,
       productUnitId: values.productUnitId,
       path: pathname,
     })
@@ -101,6 +113,37 @@ export function UpdateProduct({ product, productUnits }: UpdateProductProps) {
                 </SelectContent>
               </Select>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem className="input-item">
+              <FormLabel className="input-label">Image</FormLabel>
+              <div className="flex flex-col gap-2">
+                <FormControl>
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    placeholder="Upload a product image"
+                    className="input-file"
+                    onChange={e => handleFile(e, field.onChange)}
+                  />
+                </FormControl>
+                {field.value && (
+                  <Image
+                    src={field.value}
+                    alt="Product image"
+                    width={96}
+                    height={96}
+                    priority
+                    className="rounded-md object-contain w-full"
+                  />
+                )}
+              </div>
             </FormItem>
           )}
         />

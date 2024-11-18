@@ -12,7 +12,7 @@ interface TableActionsProps {
 export function TableOperations({ route }: TableActionsProps) {
   return (
     <Link href={`/dashboard/${route}/create`}>
-      <Button className="flex gap-2 items-center h-8 bg-emerald-500 hover:bg-emerald-600 text-neutral-50 transition-all">
+      <Button className="flex gap-2 items-center h-10 bg-blue hover:bg-blue-hover text-white py-2 px-4 rounded-md transition-all font-light">
         <FaPlusCircle />
         Create
       </Button>

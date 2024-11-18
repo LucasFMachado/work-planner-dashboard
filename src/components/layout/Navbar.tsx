@@ -15,7 +15,7 @@ export function Navbar() {
   }, [path, params])
 
   return (
-    <div className="flex items-center p-3 rounded-md bg-neutral-50 drop-shadow">
+    <div className="flex items-center p-4 rounded-md bg-background-secondary text-white drop-shadow">
       <div className="font-extrabold capitalize">{pagePath}</div>
     </div>
   )

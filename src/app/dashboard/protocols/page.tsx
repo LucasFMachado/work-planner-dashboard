@@ -36,7 +36,7 @@ export default async function ProtocolsPage({
         <TableOperations route={Routes.protocols} />
       </div>
       <div className="w-full table">
-        <Table className="w-full max-w-full bg-transparent">
+        <Table className="table">
           <TableHeader>
             <TableRow className="table-row-head">
               <TableHead className="table-head w-28">Number</TableHead>

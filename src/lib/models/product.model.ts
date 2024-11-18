@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema({
     ref: 'ProductUnit',
     required: true,
   },
+  image: { type: String },
   active: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
   deleted: { type: Boolean, default: false },

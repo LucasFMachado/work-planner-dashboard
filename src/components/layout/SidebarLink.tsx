@@ -19,7 +19,9 @@ export function SidebarLink({ link }: SidebarLinkProps) {
     <Link
       href={link.path}
       className={`flex items-center gap-2 p-4 my-1 rounded-md hover:bg-tertiary-background font-medium ${
-        isActivePath && 'bg-blue-500 text-neutral-50'
+        isActivePath
+          ? 'border border-orange text-orange hover:border-orange-hover hover:text-orange-hover transition-all'
+          : 'text-white'
       }`}
     >
       {link.icon}
