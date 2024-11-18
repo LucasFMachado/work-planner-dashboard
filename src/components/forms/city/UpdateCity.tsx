@@ -17,39 +17,35 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/useToast'
-import { updateProductUnit } from '@/lib/actions/product-unit.actions'
+import { updateCity } from '@/lib/actions/city.actions'
 import { Routes } from '@/lib/constants'
-import { ProductUnitEntity } from '@/lib/types/product-unit.types'
-import { UpdateProductUnitValidation } from '@/lib/validations/product-unit.validations'
+import { CityEntity } from '@/lib/types/city.types'
+import { UpdateCityValidation } from '@/lib/validations/city.validations'
 
-interface UpdateProductUnitProps {
-  productUnit: ProductUnitEntity
+interface UpdateCityProps {
+  city: CityEntity
 }
 
-export function UpdateProductUnit({ productUnit }: UpdateProductUnitProps) {
+export function UpdateCity({ city }: UpdateCityProps) {
   const router = useRouter()
   const pathname = usePathname()
   const { showToast } = useToast()
 
   const form = useForm({
-    resolver: zodResolver(UpdateProductUnitValidation),
+    resolver: zodResolver(UpdateCityValidation),
     defaultValues: {
-      name: productUnit.name,
-      unit: productUnit.unit,
+      name: city.name,
     },
   })
 
-  const onSubmit = async (
-    values: z.infer<typeof UpdateProductUnitValidation>,
-  ) => {
-    await updateProductUnit({
-      productUnitId: productUnit._id,
+  const onSubmit = async (values: z.infer<typeof UpdateCityValidation>) => {
+    await updateCity({
+      cityId: city._id,
       name: values.name,
-      unit: values.unit,
       path: pathname,
     })
-    showToast({ type: 'success', message: 'Product unit updated' })
-    router.push(`/dashboard/${Routes.protuctUnits}`)
+    showToast({ type: 'success', message: 'City updated' })
+    router.push(`/dashboard/${Routes.cities}`)
   }
 
   return (
@@ -69,22 +65,8 @@ export function UpdateProductUnit({ productUnit }: UpdateProductUnitProps) {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="unit"
-          render={({ field }) => (
-            <FormItem className="input-item">
-              <FormLabel className="input-label">Unit</FormLabel>
-              <FormControl>
-                <Input type="text" className="input-text" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <div className="flex flex-col-reverse sm:flex-row w-full gap-2">
-          <Link href={`/dashboard/${Routes.protuctUnits}`} className="w-full">
+          <Link href={`/dashboard/${Routes.cities}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
           <Button type="submit" className="form-update-button">

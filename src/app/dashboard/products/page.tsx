@@ -45,7 +45,7 @@ export default async function ProductsPage({
           </TableHeader>
           <TableBody>
             {products?.map(product => (
-              <TableRow key={product._id} className="table-row-body">
+              <TableRow key={product._id.toString()} className="table-row-body">
                 <TableCell className="table-cell">{product.name}</TableCell>
                 <TableCell className="table-cell">
                   {product.productUnit.name}
@@ -53,7 +53,7 @@ export default async function ProductsPage({
                 <TableCell className="table-cell w-20">
                   <TableActions
                     handleDelete={handleDelete}
-                    id={product._id}
+                    id={product._id.toString()}
                     route={Routes.products}
                   />
                 </TableCell>

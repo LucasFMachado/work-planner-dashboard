@@ -1,7 +1,7 @@
 import { UpdateProductUnit } from '@/components/forms/product-unit/UpdateProductUnit'
 import { fetchProductUnit } from '@/lib/actions/product-unit.actions'
 
-interface UpdateTaskPageProps {
+interface UpdateProductUnitPageProps {
   params: {
     _id: string
   }
@@ -9,7 +9,7 @@ interface UpdateTaskPageProps {
 
 export default async function UpdateProductUnitPage({
   params,
-}: UpdateTaskPageProps) {
+}: UpdateProductUnitPageProps) {
   const productUnit = await fetchProductUnit(params._id)
 
   return (

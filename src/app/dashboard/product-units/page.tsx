@@ -48,13 +48,16 @@ export default async function ProductUnitsPage({
           </TableHeader>
           <TableBody>
             {productUnits?.map(productUnit => (
-              <TableRow key={productUnit._id} className="table-row-body">
+              <TableRow
+                key={productUnit._id.toString()}
+                className="table-row-body"
+              >
                 <TableCell className="table-cell">{productUnit.name}</TableCell>
                 <TableCell className="table-cell">{productUnit.unit}</TableCell>
                 <TableCell className="table-cell w-20">
                   <TableActions
                     handleDelete={handleDelete}
-                    id={productUnit._id}
+                    id={productUnit._id.toString()}
                     route={Routes.protuctUnits}
                   />
                 </TableCell>

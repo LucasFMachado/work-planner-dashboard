@@ -47,7 +47,10 @@ export default async function ProtocolsPage({
           </TableHeader>
           <TableBody>
             {protocols?.map(protocol => (
-              <TableRow key={protocol._id} className="table-row-body">
+              <TableRow
+                key={protocol._id.toString()}
+                className="table-row-body"
+              >
                 <TableCell className="table-cell w-28">
                   {formatProotcol(protocol.number)}
                 </TableCell>
@@ -61,7 +64,7 @@ export default async function ProtocolsPage({
                   <TableActions
                     handleDelete={handleDelete}
                     route={Routes.protocols}
-                    id={protocol._id}
+                    id={protocol._id.toString()}
                   />
                 </TableCell>
               </TableRow>

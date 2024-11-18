@@ -8,8 +8,24 @@ export type CityEntity = {
   deletedAt?: Date
 }
 
+export type FetchCitiesReturn = {
+  cities: CityEntity[]
+  hasNextPage: boolean
+}
+
 export type CreateCityParams = {
   name: string
+  path: string
+}
+
+export type UpdateCityParams = {
+  cityId: string
+  name: string
+  path: string
+}
+
+export type DeleteCityParams = {
+  cityId: string
   path: string
 }
 

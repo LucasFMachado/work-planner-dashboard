@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useToast } from '@/hooks/useToast'
 import { createProductUnit } from '@/lib/actions/product-unit.actions'
 import { Routes } from '@/lib/constants'
 import { CreateProductUnitValidation } from '@/lib/validations/product-unit.validations'
@@ -23,6 +24,7 @@ import { CreateProductUnitValidation } from '@/lib/validations/product-unit.vali
 export function CreateProductUnit() {
   const router = useRouter()
   const pathname = usePathname()
+  const { showToast } = useToast()
 
   const form = useForm({
     resolver: zodResolver(CreateProductUnitValidation),
@@ -40,7 +42,7 @@ export function CreateProductUnit() {
       name: values.name,
       path: pathname,
     })
-
+    showToast({ type: 'success', message: 'Product unit created' })
     router.push(`/dashboard/${Routes.protuctUnits}`)
   }
 

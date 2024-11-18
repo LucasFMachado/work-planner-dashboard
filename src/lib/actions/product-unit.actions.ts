@@ -107,7 +107,7 @@ export async function updateProductUnit({
   } catch (error) {
     console.error(error)
     if (error instanceof Error) {
-      throw new Error(`Failed to update product UNIT: ${error.message}`)
+      throw new Error(`Failed to update product unit: ${error.message}`)
     }
     throw new Error(`Internal server error: ${error}`)
   }
@@ -139,7 +139,9 @@ export async function fetchProductUnitsList(): Promise<FetchProductUnitsListRetu
   try {
     connectToDB()
 
-    const productUnits = await ProductUnit.find().select('_id name')
+    const productUnits = await ProductUnit.find({
+      deleted: false,
+    }).select('_id name')
 
     const productUnitsReturn = productUnits.map(productUnit => ({
       label: productUnit.name,
