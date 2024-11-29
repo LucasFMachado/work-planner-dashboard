@@ -1,13 +1,14 @@
 import mongoose from 'mongoose'
 
-const citySchema = new mongoose.Schema({
-  protocol: { type: Number, require: true },
+const employeeSchema = new mongoose.Schema({
   name: { type: String, require: true },
+  role: { type: String, require: true },
   active: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
   deleted: { type: Boolean, default: false },
   deletedAt: { type: Date, default: null },
 })
 
-const City = mongoose.models.City || mongoose.model('City', citySchema)
-export default City
+const Employee =
+  mongoose.models.Employee || mongoose.model('Employee', employeeSchema)
+export default Employee

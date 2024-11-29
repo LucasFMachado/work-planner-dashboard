@@ -1,4 +1,4 @@
-import { CreateProduct } from '@/components/forms/product/CreateProduct'
+import { CreateProduct } from '@/components/forms/product/create-product'
 import { fetchProductUnitsList } from '@/lib/actions/product-unit.actions'
 
 export default async function CrateProductPage() {

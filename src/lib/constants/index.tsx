@@ -5,6 +5,7 @@ import {
   MdHelpCenter,
   MdOutlineSettings,
   MdPeople,
+  MdPerson,
   MdWork,
 } from 'react-icons/md'
 
@@ -42,6 +43,31 @@ export const sidebarCategories: SidebarCategoryType[] = [
     ],
   },
   {
+    title: 'User',
+    links: [
+      {
+        title: 'Employees',
+        path: '/dashboard/employees',
+        icon: <MdPerson />,
+      },
+      {
+        title: 'Teams',
+        path: '/dashboard/teams',
+        icon: <MdPeople />,
+      },
+      {
+        title: 'Settings',
+        path: '/dashboard/settings',
+        icon: <MdOutlineSettings />,
+      },
+      {
+        title: 'Help',
+        path: '/dashboard/help',
+        icon: <MdHelpCenter />,
+      },
+    ],
+  },
+  {
     title: 'Analytics',
     links: [
       {
@@ -53,26 +79,6 @@ export const sidebarCategories: SidebarCategoryType[] = [
         title: 'Reports',
         path: '/dashboard/reports',
         icon: <MdAnalytics />,
-      },
-      {
-        title: 'Teams',
-        path: '/dashboard/teams',
-        icon: <MdPeople />,
-      },
-    ],
-  },
-  {
-    title: 'User',
-    links: [
-      {
-        title: 'Settings',
-        path: '/dashboard/settings',
-        icon: <MdOutlineSettings />,
-      },
-      {
-        title: 'Help',
-        path: '/dashboard/help',
-        icon: <MdHelpCenter />,
       },
     ],
   },
@@ -86,4 +92,6 @@ export enum Routes {
   products = 'products',
   protuctUnits = 'product-units',
   cities = 'cities',
+  employees = 'employees',
+  teams = 'teams',
 }

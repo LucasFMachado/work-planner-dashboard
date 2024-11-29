@@ -1,4 +1,4 @@
-import { UpdateProtocol } from '@/components/forms/protocol/UpdateProtocol'
+import { UpdateProtocol } from '@/components/forms/protocol/update-protocol'
 import { fetchCitiesList } from '@/lib/actions/city.actions'
 import { fetchProtocol } from '@/lib/actions/protocol.actions'
 

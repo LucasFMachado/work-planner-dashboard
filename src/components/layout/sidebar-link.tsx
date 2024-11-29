@@ -18,7 +18,7 @@ export function SidebarLink({ link }: SidebarLinkProps) {
   return (
     <Link
       href={link.path}
-      className={`flex items-center gap-2 p-4 my-1 rounded-md hover:bg-tertiary-background font-medium ${
+      className={`flex items-center gap-2 p-3 my-1 rounded-md hover:bg-tertiary-background font-normal ${
         isActivePath
           ? 'border border-orange text-orange hover:border-orange-hover hover:text-orange-hover transition-all'
           : 'text-white'

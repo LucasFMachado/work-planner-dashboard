@@ -1,4 +1,4 @@
-import { UpdateProductUnit } from '@/components/forms/product-unit/UpdateProductUnit'
+import { UpdateProductUnit } from '@/components/forms/product-unit/update-product-unit'
 import { fetchProductUnit } from '@/lib/actions/product-unit.actions'
 
 interface UpdateProductUnitPageProps {

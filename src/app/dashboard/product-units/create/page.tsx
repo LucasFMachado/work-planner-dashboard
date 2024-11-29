@@ -1,4 +1,4 @@
-import { CreateProductUnit } from '@/components/forms/product-unit/CreateProductUnit'
+import { CreateProductUnit } from '@/components/forms/product-unit/create-product-unit'
 
 export default function CreateProductUnitPage() {
   return (

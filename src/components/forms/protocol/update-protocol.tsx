@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-import TextEditor from '@/components/shared/TextEditor'
+import TextEditor from '@/components/shared/text-editor'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -25,45 +25,104 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/useToast'
-import { createProtocol } from '@/lib/actions/protocol.actions'
+import { updateProtocol } from '@/lib/actions/protocol.actions'
 import { Routes } from '@/lib/constants'
 import { CitiesListOption } from '@/lib/types/city.types'
-import { CreateProtocolValidation } from '@/lib/validations/protocol.validations'
+import { ProtocolEntity } from '@/lib/types/protocol.types'
+import { formatProotcol } from '@/lib/utils'
+import { UpdateProtocolValidation } from '@/lib/validations/protocol.validations'
 
-interface CreateProtocolProps {
+interface UpdateProtocolProps {
+  protocol: ProtocolEntity
   cities: CitiesListOption[]
 }
 
-export function CreateProtocol({ cities }: CreateProtocolProps) {
+export function UpdateProtocol({ protocol, cities }: UpdateProtocolProps) {
   const router = useRouter()
   const pathname = usePathname()
   const { showToast } = useToast()
 
   const form = useForm({
-    resolver: zodResolver(CreateProtocolValidation),
+    resolver: zodResolver(UpdateProtocolValidation),
     defaultValues: {
-      requestor: '',
-      description: '',
-      address: '',
-      cityId: '',
+      number: formatProotcol(protocol.number),
+      requestor: protocol.requestor,
+      description: protocol.description || '',
+      address: protocol.address,
+      cityId: String(protocol.city),
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof CreateProtocolValidation>) => {
-    await createProtocol({
+  const onSubmit = async (values: z.infer<typeof UpdateProtocolValidation>) => {
+    await updateProtocol({
+      protocolId: protocol._id,
       requestor: values.requestor,
       description: values.description,
       address: values.address,
       cityId: values.cityId,
       path: pathname,
     })
-    showToast({ type: 'success', message: 'Protocol created' })
+    showToast({ type: 'success', message: 'Protocol updated' })
     router.push(`/dashboard/${Routes.protocols}`)
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="form-component">
+        <div className="flex flex-row gap-2">
+          <FormField
+            control={form.control}
+            name="number"
+            render={({ field }) => (
+              <FormItem className="input-item">
+                <FormLabel className="input-label">Protocol</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    disabled
+                    className="input-text"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="cityId"
+            render={({ field }) => (
+              <FormItem className="input-item">
+                <FormLabel className="input-label">City</FormLabel>
+                <Select
+                  disabled
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="input-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="input-select-list">
+                    {cities?.map(city => (
+                      <SelectItem
+                        key={city.value}
+                        value={city.value}
+                        className="input-select-list-item"
+                      >
+                        {city.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
         <FormField
           control={form.control}
           name="requestor"
@@ -94,35 +153,6 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
 
         <FormField
           control={form.control}
-          name="cityId"
-          render={({ field }) => (
-            <FormItem className="input-item">
-              <FormLabel className="input-label">City</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger className="input-select">
-                    <SelectValue />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent className="input-select-list">
-                  {cities?.map(city => (
-                    <SelectItem
-                      key={city.value}
-                      value={city.value}
-                      className="input-select-list-item"
-                    >
-                      {city.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="description"
           render={({ field }) => (
             <FormItem>
@@ -144,8 +174,8 @@ export function CreateProtocol({ cities }: CreateProtocolProps) {
           <Link href={`/dashboard/${Routes.protocols}`} className="w-full">
             <Button className="form-cancel-button">Cancel</Button>
           </Link>
-          <Button type="submit" className="form-create-button">
-            Create
+          <Button type="submit" className="form-update-button">
+            Update
           </Button>
         </div>
       </form>

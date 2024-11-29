@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
-const citySchema = new mongoose.Schema({
-  protocol: { type: Number, require: true },
+const teamSchema = new mongoose.Schema({
   name: { type: String, require: true },
   active: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
@@ -9,5 +8,5 @@ const citySchema = new mongoose.Schema({
   deletedAt: { type: Date, default: null },
 })
 
-const City = mongoose.models.City || mongoose.model('City', citySchema)
-export default City
+const Team = mongoose.models.Team || mongoose.model('Team', teamSchema)
+export default Team

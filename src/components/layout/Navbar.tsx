@@ -16,7 +16,9 @@ export function Navbar() {
 
   return (
     <div className="flex items-center p-4 rounded-md bg-background-secondary text-white drop-shadow">
-      <div className="font-extrabold capitalize">{pagePath}</div>
+      <div className="font-semibold capitalize">
+        {pagePath.replaceAll('-', ' ')}
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import { TableActions } from '@/components/shared/TableActions'
-import { TableOperations } from '@/components/shared/TableOperations'
-import { TablePagination } from '@/components/shared/TablePagination'
+import { TableActions } from '@/components/shared/table-actions'
+import { TableOperations } from '@/components/shared/table-operations'
+import { TablePagination } from '@/components/shared/table-pagination'
 import {
   Table,
   TableBody,
@@ -32,50 +32,52 @@ export default async function ProtocolsPage({
 
   return (
     <section className="main-section">
-      <div className="w-full mb-2">
-        <TableOperations route={Routes.protocols} />
-      </div>
-      <div className="w-full table">
-        <Table className="table">
-          <TableHeader>
-            <TableRow className="table-row-head">
-              <TableHead className="table-head w-28">Number</TableHead>
-              <TableHead className="table-head">Requestor</TableHead>
-              <TableHead className="table-head">City</TableHead>
-              <TableHead className="table-head"></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {protocols?.map(protocol => (
-              <TableRow
-                key={protocol._id.toString()}
-                className="table-row-body"
-              >
-                <TableCell className="table-cell w-28">
-                  {formatProotcol(protocol.number)}
-                </TableCell>
-                <TableCell className="table-cell">
-                  {protocol.requestor}
-                </TableCell>
-                <TableCell className="table-cell">
-                  {protocol.city.name}
-                </TableCell>
-                <TableCell className="table-cell w-20">
-                  <TableActions
-                    handleDelete={handleDelete}
-                    route={Routes.protocols}
-                    id={protocol._id.toString()}
-                  />
-                </TableCell>
+      <div className="w-full">
+        <div className="mb-2">
+          <TableOperations route={Routes.protocols} />
+        </div>
+        <div className="w-full table">
+          <Table className="table">
+            <TableHeader>
+              <TableRow className="table-row-head">
+                <TableHead className="table-head w-28">Number</TableHead>
+                <TableHead className="table-head">Requestor</TableHead>
+                <TableHead className="table-head">City</TableHead>
+                <TableHead className="table-head"></TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          route={Routes.protocols}
-          currentPage={currentPage}
-          hasNextPage={hasNextPage}
-        />
+            </TableHeader>
+            <TableBody>
+              {protocols?.map(protocol => (
+                <TableRow
+                  key={protocol._id.toString()}
+                  className="table-row-body"
+                >
+                  <TableCell className="table-cell w-28">
+                    {formatProotcol(protocol.number)}
+                  </TableCell>
+                  <TableCell className="table-cell">
+                    {protocol.requestor}
+                  </TableCell>
+                  <TableCell className="table-cell">
+                    {protocol.city.name}
+                  </TableCell>
+                  <TableCell className="table-cell w-20">
+                    <TableActions
+                      handleDelete={handleDelete}
+                      route={Routes.protocols}
+                      id={protocol._id.toString()}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <TablePagination
+            route={Routes.protocols}
+            currentPage={currentPage}
+            hasNextPage={hasNextPage}
+          />
+        </div>
       </div>
     </section>
   )

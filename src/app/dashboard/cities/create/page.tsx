@@ -1,4 +1,4 @@
-import { CreateCity } from '@/components/forms/city/CreateCity'
+import { CreateCity } from '@/components/forms/city/create-city'
 
 export default function CrateCityPage() {
   return (

@@ -1,5 +1,5 @@
-import { UpdateCity } from '@/components/forms/city/update-city'
-import { fetchCity } from '@/lib/actions/city.actions'
+import { UpdateTeam } from '@/components/forms/team/update-team'
+import { fetchTeam } from '@/lib/actions/team.actions'
 
 interface UpdateCityPageProps {
   params: {
@@ -8,12 +8,12 @@ interface UpdateCityPageProps {
 }
 
 export default async function UpdateCityPage({ params }: UpdateCityPageProps) {
-  const city = await fetchCity(params._id)
+  const team = await fetchTeam(params._id)
 
   return (
     <section className="form-section">
       <div className="rounded-md w-4/5">
-        <UpdateCity city={city} />
+        <UpdateTeam team={team} />
       </div>
     </section>
   )

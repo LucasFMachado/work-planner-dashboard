@@ -3,7 +3,7 @@ import { MdLogout } from 'react-icons/md'
 
 import { sidebarCategories } from '@/lib/constants'
 
-import { SidebarLink } from './SidebarLink'
+import { SidebarLink } from './sidebar-link'
 
 export function Sidebar() {
   return (

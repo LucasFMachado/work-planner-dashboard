@@ -1,4 +1,4 @@
-import { UpdateProduct } from '@/components/forms/product/UpdateProduct'
+import { UpdateProduct } from '@/components/forms/product/update-product'
 import { fetchProduct } from '@/lib/actions/product.actions'
 import { fetchProductUnitsList } from '@/lib/actions/product-unit.actions'
 

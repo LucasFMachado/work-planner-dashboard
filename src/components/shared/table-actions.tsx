@@ -18,13 +18,13 @@ export function TableActions({ id, route, handleDelete }: TableActionsProps) {
   return (
     <div className="flex space-x-2">
       <Link href={`/dashboard/${route}/${id}`}>
-        <Button className="bg-orange-400 hover:bg-orange-500 text-white py-1 px-3 rounded-md">
+        <Button className="bg-orange hover:bg-orange-hover text-white p-1 h-8 w-8 rounded-md">
           <FaPen />
         </Button>
       </Link>
       <Button
         onClick={() => handleDelete(id, pathname)}
-        className="bg-red hover:bg-red-hover text-white py-1 px-3  rounded-md"
+        className="bg-red hover:bg-red-hover text-white p-1 h-8 w-8 rounded-md"
       >
         <FaTrashAlt />
       </Button>
